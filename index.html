@@ -2,16 +2,16 @@
 <html lang="sv">
 <head>
   <meta charset="UTF-8">
-  <title>Agent 007 – Test</title>
+  <title>Agent 007 – Widget Test</title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Open+Sans&display=swap" rel="stylesheet">
 
   <style>
     body {
-      background-color: #333333; /* mörk bakgrund */
+      background-color: #1E1E1E; /* nästan svart bakgrund */
       font-family: 'Open Sans', sans-serif;
-      color: #FDF9ED;
+      color: #FDF9ED; /* krämvit text */
       margin: 40px;
       text-align: center;
     }
@@ -20,16 +20,108 @@
       font-family: 'Archivo Black', sans-serif;
       color: #FDF9ED;
     }
+
+    /* Widget container */
+    .chat-widget {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 320px;
+      height: 420px;
+      border: 1px solid #333;
+      background-color: #1E1E1E;
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+    }
+
+    .chat-header {
+      background-color: #1E1E1E;
+      color: #FDF9ED;
+      font-weight: bold;
+      padding: 8px;
+      text-align: left;
+      font-family: 'Archivo Black', sans-serif;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      text-align: left;
+    }
+
+    /* Användarens meddelande */
+    .chat-message.user {
+      text-align: left;
+      background-color: #2B2B2B; /* mörk grafitgrå */
+      color: #FDF9ED; /* krämvit */
+      border-radius: 6px;
+      padding: 6px 10px;
+      margin: 4px 0;
+      display: inline-block;
+    }
+
+    /* Bottens meddelande */
+    .chat-message.bot {
+      text-align: left;
+      background-color: transparent; /* ingen bubbla */
+      color: #E5E2D9; /* subtil beige text */
+      margin: 4px 0;
+      display: inline-block;
+    }
+
+    .chat-input {
+      display: flex;
+      border-top: 1px solid #333;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+      background-color: #2B2B2B;
+      color: #FDF9ED;
+    }
+
+    .chat-input button {
+      padding: 10px;
+      background-color: #FDF9ED;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      color: #1E1E1E;
+    }
+
+    /* Watermark i hörnet */
+    .watermark {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 11px;
+      color: rgba(253, 249, 237, 0.3); /* subtil nyans */
+      font-family: 'Archivo Black', sans-serif;
+    }
   </style>
 </head>
 <body>
   <h1>Agent 007 – Widget Test</h1>
 
-  <!-- Din widget -->
-  <script src="agentbyran-widget.js"
-          data-company="Agentbyrån"
-          data-agent="007"
-          data-endpoint="https://agentbyran-proxy.onrender.com/ask">
-  </script>
+  <div class="chat-widget">
+    <div class="chat-header">
+      Agentbyrån
+      <div class="watermark">Agentbyrån</div>
+    </div>
+    <div class="chat-messages">
+      <div class="chat-message.bot">Hej! Hur kan jag hjälpa dig idag?</div>
+      <div class="chat-message.user">Hej</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" placeholder="Skriv ett meddelande...">
+      <button>Skicka</button>
+    </div>
+  </div>
 </body>
 </html>

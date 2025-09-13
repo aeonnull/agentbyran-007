@@ -1,3 +1,9 @@
+Här är din kod uppdaterad med alla fyra fixar i ett svep:
+	•	Skicka-knappen fungerar (klick + enter).
+	•	Inputfältet är mobil/iPad-vänligt.
+	•	Scroll finns i konversationsdelen.
+	•	Diskret hover-effekt på knappen.
+
 (function () {
   const el = document.currentScript;
   const company  = el.getAttribute("data-company")  || "Agentbyrån";
@@ -46,8 +52,9 @@
   const messages = document.createElement("div");
   messages.style.flex = "1";
   messages.style.padding = "10px 12px";
-  messages.style.overflowY = "auto";
+  messages.style.overflowY = "auto";   // scroll
   messages.style.wordBreak = "break-word";
+  messages.style.WebkitOverflowScrolling = "touch"; // iOS smooth scroll
   container.appendChild(messages);
 
   // === Input-rad ===
@@ -65,6 +72,7 @@
   input.style.backgroundColor = "#333333"; // 007 bakgrund
   input.style.color = accent;
   input.style.fontFamily = "'Open Sans', sans-serif";
+  input.style.fontSize = "14px"; // fix för läsbarhet på mobil
 
   const button = document.createElement("button");
   button.textContent = "Skicka";
@@ -73,6 +81,20 @@
   button.style.border = "none";
   button.style.padding = "10px 14px";
   button.style.cursor = "pointer";
+  button.style.transition = "background-color 0.2s ease"; // hover-effekt
+
+  button.addEventListener("mouseover", () => {
+    button.style.backgroundColor = "#ccc";
+  });
+  button.addEventListener("mouseout", () => {
+    button.style.backgroundColor = accent;
+  });
+  button.addEventListener("mousedown", () => {
+    button.style.backgroundColor = "#aaa";
+  });
+  button.addEventListener("mouseup", () => {
+    button.style.backgroundColor = accent;
+  });
 
   inputRow.appendChild(input);
   inputRow.appendChild(button);
@@ -87,7 +109,6 @@
     line.style.whiteSpace = "pre-wrap";
 
     if (isUser) {
-      // användarens bubbla
       line.style.textAlign = "right";
       line.style.display = "inline-block";
       line.style.backgroundColor = "#4A4A4A"; // 007 bubbla
@@ -98,7 +119,6 @@
       line.style.float = "right";
       line.style.clear = "both";
     } else {
-      // botten = ren text
       line.style.textAlign = "left";
       line.style.color = accent;
       line.style.float = "left";
@@ -134,3 +154,5 @@
   button.addEventListener("click", sendMessage);
   input.addEventListener("keypress", (e) => { if (e.key === "Enter") sendMessage(); });
 })();
+
+Vill du att jag även bygger in en automatisk disable/enable på knappen (gråa ut när input är tomt) så att användaren ser att den inte går att klicka förrän man skrivit något?

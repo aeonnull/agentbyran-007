@@ -1,9 +1,3 @@
-Här är din kod uppdaterad med alla fyra fixar i ett svep:
-	•	Skicka-knappen fungerar (klick + enter).
-	•	Inputfältet är mobil/iPad-vänligt.
-	•	Scroll finns i konversationsdelen.
-	•	Diskret hover-effekt på knappen.
-
 (function () {
   const el = document.currentScript;
   const company  = el.getAttribute("data-company")  || "Agentbyrån";
@@ -154,5 +148,3 @@ Här är din kod uppdaterad med alla fyra fixar i ett svep:
   button.addEventListener("click", sendMessage);
   input.addEventListener("keypress", (e) => { if (e.key === "Enter") sendMessage(); });
 })();
-
-Vill du att jag även bygger in en automatisk disable/enable på knappen (gråa ut när input är tomt) så att användaren ser att den inte går att klicka förrän man skrivit något?

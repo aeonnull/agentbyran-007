@@ -1,17 +1,11 @@
-name: Duplicate agent
+name: Test workflow
 
 on:
   workflow_dispatch:
 
 jobs:
-  duplicate:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Create duplicate branch
-        run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
-          git checkout -b duplicate-007
-          git push origin duplicate-007
+      - name: Say hello
+        run: echo "Hello from Actions!"

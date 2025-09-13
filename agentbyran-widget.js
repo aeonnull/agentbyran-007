@@ -48,7 +48,6 @@
   messages.style.padding = "10px 12px";
   messages.style.overflowY = "auto";
   messages.style.wordBreak = "break-word";
-  messages.style.WebkitOverflowScrolling = "touch"; // NEW (scroll för mobil/iPad)
   container.appendChild(messages);
 
   // === Input-rad ===
@@ -66,7 +65,6 @@
   input.style.backgroundColor = "#333333"; // 007 bakgrund
   input.style.color = accent;
   input.style.fontFamily = "'Open Sans', sans-serif";
-  input.style.fontSize = "14px"; // NEW (bättre läsbarhet på mobil/iPad)
 
   const button = document.createElement("button");
   button.textContent = "Skicka";
@@ -75,14 +73,6 @@
   button.style.border = "none";
   button.style.padding = "10px 14px";
   button.style.cursor = "pointer";
-
-  button.addEventListener("mouseover", () => { // NEW (hover-effekt)
-    button.style.opacity = "0.8";
-  });
-
-  button.addEventListener("mousedown", () => { // NEW (klick-effekt)
-    button.style.transform = "scale(0.96)";
-  });
 
   inputRow.appendChild(input);
   inputRow.appendChild(button);

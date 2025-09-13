@@ -76,7 +76,6 @@
 
   inputRow.appendChild(input);
   inputRow.appendChild(button);
-  messages.style.WebkitOverflowScrolling = "touch"; // NEW
   container.appendChild(inputRow);
   document.body.appendChild(container);
 

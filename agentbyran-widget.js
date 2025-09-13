@@ -46,9 +46,9 @@
   const messages = document.createElement("div");
   messages.style.flex = "1";
   messages.style.padding = "10px 12px";
-  messages.style.overflowY = "auto";   // scroll
+  messages.style.overflowY = "auto";
   messages.style.wordBreak = "break-word";
-  messages.style.WebkitOverflowScrolling = "touch"; // iOS smooth scroll
+  messages.style.WebkitOverflowScrolling = "touch"; // NEW (scroll för mobil/iPad)
   container.appendChild(messages);
 
   // === Input-rad ===
@@ -66,7 +66,7 @@
   input.style.backgroundColor = "#333333"; // 007 bakgrund
   input.style.color = accent;
   input.style.fontFamily = "'Open Sans', sans-serif";
-  input.style.fontSize = "14px"; // fix för läsbarhet på mobil
+  input.style.fontSize = "14px"; // NEW (bättre läsbarhet på mobil/iPad)
 
   const button = document.createElement("button");
   button.textContent = "Skicka";
@@ -75,19 +75,13 @@
   button.style.border = "none";
   button.style.padding = "10px 14px";
   button.style.cursor = "pointer";
-  button.style.transition = "background-color 0.2s ease"; // hover-effekt
 
-  button.addEventListener("mouseover", () => {
-    button.style.backgroundColor = "#ccc";
+  button.addEventListener("mouseover", () => { // NEW (hover-effekt)
+    button.style.opacity = "0.8";
   });
-  button.addEventListener("mouseout", () => {
-    button.style.backgroundColor = accent;
-  });
-  button.addEventListener("mousedown", () => {
-    button.style.backgroundColor = "#aaa";
-  });
-  button.addEventListener("mouseup", () => {
-    button.style.backgroundColor = accent;
+
+  button.addEventListener("mousedown", () => { // NEW (klick-effekt)
+    button.style.transform = "scale(0.96)";
   });
 
   inputRow.appendChild(input);
@@ -103,6 +97,7 @@
     line.style.whiteSpace = "pre-wrap";
 
     if (isUser) {
+      // användarens bubbla
       line.style.textAlign = "right";
       line.style.display = "inline-block";
       line.style.backgroundColor = "#4A4A4A"; // 007 bubbla
@@ -113,6 +108,7 @@
       line.style.float = "right";
       line.style.clear = "both";
     } else {
+      // botten = ren text
       line.style.textAlign = "left";
       line.style.color = accent;
       line.style.float = "left";

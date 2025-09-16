@@ -2,7 +2,7 @@
 <html lang="sv">
 <head>
   <meta charset="UTF-8">
-  <title>Agent 007 Test</title>
+  <title>Agent 007</title>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Open+Sans&display=swap" rel="stylesheet">
   <style>
     body {
@@ -16,24 +16,10 @@
       font-family:'Archivo Black',sans-serif;
       color:#FDF9ED;
     }
-    #chat {
-      border:1px solid #ccc;
-      padding:10px;
-      height:200px;
-      overflow-y:auto;
-      background:#fff;
-      color:#000;
-      margin-top:20px;
-      text-align:left;
-    }
-    .user { text-align:right; color:#0066cc; margin:4px 0; }
-    .bot { text-align:left; color:#333; margin:4px 0; }
-    input { width:70%; padding:6px; }
-    button { padding:6px 10px; }
   </style>
 </head>
 <body>
-  <h1>Agent 007 – Widget & Test</h1>
+  <h1>Agent 007 – Widget</h1>
 
   <!-- Widget -->
   <script src="https://aeonnull.github.io/agentbyran-007/agentbyran-widget.js?v=20250913a"
@@ -42,29 +28,6 @@
           data-endpoint="https://agentbyran-007.vercel.app/api/007"
           data-color="#FDF9ED"
           data-position="bottom-right">
-  </script>
-
-  <!-- Testchatt -->
-  <div id="chat"></div>
-  <input id="msg" placeholder="Skriv här..." />
-  <button onclick="send()">Skicka</button>
-
-  <script>
-    async function send() {
-      const msg = document.getElementById("msg").value;
-      if (!msg) return;
-      document.getElementById("chat").innerHTML += `<div class="user">${msg}</div>`;
-      document.getElementById("msg").value = "";
-      const res = await fetch("/api/007", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: msg })
-      });
-      const data = await res.json();
-      const reply = data.content?.[0]?.text || "(inget svar)";
-      document.getElementById("chat").innerHTML += `<div class="bot">${reply}</div>`;
-      document.getElementById("chat").scrollTop = document.getElementById("chat").scrollHeight;
-    }
   </script>
 </body>
 </html>

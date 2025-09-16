@@ -1,37 +1,35 @@
-// api/007.js
-import Anthropic from "@anthropic-ai/sdk";
+import Anthropic from '@anthropic-ai/sdk';
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
 export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
   try {
     const { message } = req.body;
 
-    if (!message) {
-      return res.status(400).json({ error: "No message provided" });
-    }
-
     const response = await anthropic.messages.create({
-      model: "claude-3-sonnet-20240229",
-      max_tokens: 500,
-      messages: [
-        {
-          role: "user",
-          content: message,
-        },
-      ],
+      model: 'claude-3-sonnet-20240229',
+      max_tokens: 1000,
+      messages: [{ role: 'user', content: message }],
     });
 
-    // Returnera hela Claude-svaret så frontend kan läsa content[0].text
-    res.status(200).json(response);
+    // Skicka ett förenklat svar till frontend
+    return res.status(200).json({
+      reply: response.content[0].text,
+      success: true,
+    });
 
   } catch (error) {
-    console.error("Claude API error:", error);
-    res.status(500).json({
-      error: "Fel vid anrop till Claude API",
-      details: error.message,
+    console.error('Claude API error:', error);
+    return res.status(500).json({
+      reply: null,
+      success: false,
+      error: error.message || 'Kunde inte få svar från Claude',
     });
   }
 }

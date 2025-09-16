@@ -77,7 +77,6 @@
   button.style.cursor = "pointer";
   button.style.transition = "opacity 0.2s, transform 0.1s";
 
-  // Hover-effekt
   button.addEventListener("mouseenter", () => { button.style.opacity = "0.8"; });
   button.addEventListener("mouseleave", () => { button.style.opacity = "1"; });
   button.addEventListener("mousedown", () => { button.style.transform = "scale(0.95)"; });
@@ -134,7 +133,7 @@
       const data = await res.json();
       const reply = data?.content?.[0]?.text || "(Inget svar)";
       addMessage(reply, false);
-    } catch {
+    } catch (err) {
       addMessage("Kunde inte kontakta servern.", false);
     }
   }
